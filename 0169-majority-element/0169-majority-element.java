@@ -1,25 +1,31 @@
 class Solution {
-    public int majorityElement(int[] nums) {
-        Map<Integer, Integer> table = new HashMap<>();//哈希表法（自己写的）
-        int newtimes = 0;
-        for (int num : nums){
-            if (!table.containsKey(num)){
-                table.put(num, 1);
-            }
-            else{
-                newtimes = table.get(num) + 1;
-                table.put(num, newtimes);
+    private Map<Integer, Integer> countNums(int[] nums) {
+        Map<Integer, Integer> counts = new HashMap<Integer, Integer>();//官方哈希表法值得学习
+        for (int num : nums) {
+            if (!counts.containsKey(num)) {
+                counts.put(num, 1);
+            } else {
+                counts.put(num, counts.get(num) + 1);
             }
         }
-        int maxtimes = 0;
-        int most_num = 0;
-        for (Map.Entry <Integer, Integer> entry : table.entrySet()){
-            if (entry.getValue() > maxtimes){
-                maxtimes = entry.getValue();
-                most_num = entry.getKey();
-            }
+        return counts;
+    }
 
+    public int majorityElement(int[] nums) {
+        Map<Integer, Integer> counts = countNums(nums);
+
+        Map.Entry<Integer, Integer> majorityEntry = null;
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+            if (majorityEntry == null || entry.getValue() > majorityEntry.getValue()) {
+                majorityEntry = entry;
+            }
         }
-        return most_num;
+
+        return majorityEntry.getKey();
     }
 }
+
+作者：力扣官方题解
+链接：https://leetcode.cn/problems/majority-element/solutions/146074/duo-shu-yuan-su-by-leetcode-solution/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
