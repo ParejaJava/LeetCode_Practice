@@ -1,6 +1,6 @@
 class Solution {
     public int majorityElement(int[] nums) {
-        Map<Integer, Integer> table = new HashMap<>();
+        Map<Integer, Integer> table = new HashMap<>();//哈希表法
         int newtimes = 0;
         for (int num : nums){
             if (!table.containsKey(num)){
