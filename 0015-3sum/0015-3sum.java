@@ -13,6 +13,14 @@ class Solution {
             int y = x + 1;
             int z = n - 1;
             while (y < z) {
+                if (y > x + 1 && nums[y] == nums[y - 1]){
+                    y++;
+                    continue;
+                }
+                if (z < n - 1 && nums[z] == nums[z + 1]){
+                    z--;
+                    continue;
+                }
                 int sum = nums[x] + nums[y] + nums[z];
                 if (sum < 0){
                     y++;
@@ -20,8 +28,6 @@ class Solution {
                     z--;
                 } else{
                     resultList.add(Arrays.asList(nums[x], nums[y], nums[z]));
-                    while (y < z && nums[y] == nums[y + 1]) { y++; }
-                    while (y < z && nums[z] == nums[z - 1]) { z--; }
                     y++;
                     z--;
                 }
