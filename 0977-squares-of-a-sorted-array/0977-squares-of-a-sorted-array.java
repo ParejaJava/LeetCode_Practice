@@ -25,11 +25,13 @@ class Solution {
             while (neg >= 0 || p < n) {
                 if (neg < 0) {
                     numSquare[idx] = nums[p] * nums[p];
+                    p++;
                     idx++; //记得维护所有指针
                     continue; //忘了
                 }
                 if (p > n - 1) {
                     numSquare[idx] = nums[neg] * nums[neg];
+                    neg--;
                     idx++;
                     continue; //忘了
                 }
