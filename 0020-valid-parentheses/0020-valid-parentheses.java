@@ -5,10 +5,10 @@ class Solution {
             return false;
         }
         Deque<Character> stack = new ArrayDeque<>();
-        Map<Character, Character> pairs = new HashMap<>();
-        pairs.put(')', '(');
-        pairs.put(']', '[');
-        pairs.put('}', '{');
+        Map<Character, Character> pairs = Map.of(
+            ')', '(',
+            ']', '[',
+            '}', '{');
         for (int i = 0; i < n; i++) {
             char ch = s.charAt(i);
             if (pairs.containsKey(ch)) {
