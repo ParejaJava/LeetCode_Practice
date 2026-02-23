@@ -1,11 +1,14 @@
 class Solution {
     public boolean isValid(String s) {
+        int n = s.length();
+        if (n % 2 != 0) {
+            return false;
+        }
         Deque<Character> stack = new ArrayDeque<>();
         Map<Character, Character> pairs = new HashMap<>();
         pairs.put(')', '(');
         pairs.put(']', '[');
         pairs.put('}', '{');
-        int n = s.length();
         for (int i = 0; i < n; i++) {
             char ch = s.charAt(i);
             if (pairs.containsKey(ch)) {
