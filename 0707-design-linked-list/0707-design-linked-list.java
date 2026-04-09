@@ -71,12 +71,25 @@ class MyLinkedList {
     
     public void deleteAtIndex(int index) {
         ListNode curr = head;
-        while (index > 0) {
-            curr = curr.next;
-            index--;
+        if (index < 0 || index > size - 1) {
+            return;
         }
-        curr.next = curr.next.next;
-        size--;
+        else if (index == size - 1) {
+            while (index > 0) {
+                curr = curr.next;
+                index--;
+            }
+            curr.next = null;
+            size--;
+        } 
+        else {
+            while (index > 0) {
+                curr = curr.next;
+                index--;
+            }
+            curr.next = curr.next.next;
+            size--;
+        }
     }
 }
 
