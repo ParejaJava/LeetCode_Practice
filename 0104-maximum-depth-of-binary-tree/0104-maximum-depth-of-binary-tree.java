@@ -18,22 +18,7 @@ class Solution {
         if (root == null) {
             return 0;
         }
-        Queue<TreeNode> que = new ArrayDeque<>();
-        que.offer(root);
-        int depth = 0;
-        while (!que.isEmpty()) {
-            int size = que.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = que.poll();
-                if(node.left != null) {
-                    que.offer(node.left);
-                }
-                if(node.right != null) {
-                    que.offer(node.right);
-                }
-            }
-            depth++;
-        }
-        return depth;
+
+        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 }
