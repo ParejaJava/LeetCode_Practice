@@ -18,6 +18,21 @@ class Solution {
         if (root == null) {
             return 0;
         }
+        TreeNode l = root.left;
+        TreeNode r = root.right;
+        int hl = 1;
+        int hr = 1;
+        while (l != null) {
+            l = l.left;
+            hl++;
+        }
+        while (r != null) {
+            r = r.right;
+            hr++;
+        }
+        if (hl == hr) {
+            return (int)Math.pow(2, hl) - 1;
+        } 
         return countNodes(root.left) + countNodes(root.right) + 1;
     }
 }
