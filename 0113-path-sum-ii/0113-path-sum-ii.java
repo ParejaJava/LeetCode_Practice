@@ -44,6 +44,5 @@ class Solution {
             traversal(root.right, targetSum - root.val, res, paths);
             paths.remove(paths.size()-1);
         }
-        return;
     }
 }
