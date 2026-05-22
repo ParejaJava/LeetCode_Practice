@@ -1,18 +1,22 @@
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        int[] sf = new int[nums.length];
-        int[] sb = new int[nums.length];
-        sf[0] = 1;
-        sb[0] = 1;
-        for (int i = 0; i < nums.length - 1; i++) {
-            sf[i + 1] = sf[i] * nums[i]; 
+        // 我现在要写一个前后缀的代码，pre[i]代表nums[0, i-1]的乘积，
+        // 然后suf[i]代表nums[i+1, n-1]的乘积
+        // 定义完成再写，看看效果怎么样
+        int n = nums.length;
+        int[] pre = new int[n];
+        int[] suf = new int[n];
+        pre[0] = 1;
+        for (int i = 1; i < n; i++) {
+            pre[i] = pre[i-1] * nums[i-1];
         }
-        for (int j = 0; j < nums.length - 1; j++) {
-            sb[j + 1] = sb[j] * nums[nums.length - 1 - j];
+        suf[n-1] = 1;
+        for (int i = n-2; i >= 0; i--) {
+            suf[i] = suf[i + 1] * nums[i + 1];
         }
-        int[] ans = new int[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            ans[i] = sf[i] * sb[nums.length - i - 1];
+        int[] ans = new int[n];
+        for(int i = 0; i < n; i++) {
+            ans[i] = pre[i] * suf[i];
         }
         return ans;
     }
