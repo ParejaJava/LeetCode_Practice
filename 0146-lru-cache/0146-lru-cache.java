@@ -58,7 +58,7 @@ class LRUCache {
     private void pushFront (Node x) {
         x.prev = dummy;
         x.next = dummy.next;
-        x.prev.next = x;
+        dummy.next = x;
         x.next.prev = x;
     }
 }
